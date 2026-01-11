@@ -24,3 +24,9 @@ with smtplib.SMTP(SMTP_SERVER,PORT) as server:
     server.starttls()
     server.login(USERNAME,PASSWORD)
     server.sendmail(USERNAME,Reciever_email,message.as_string())
+
+
+
+
+if __name__ == "__main__":
+    main()
