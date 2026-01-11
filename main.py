@@ -6,37 +6,41 @@ import json
 
 
 
+def create_message_object(username, reciever_email):
+    body = "Holy cow this can actually go through pt 2?"
+    message = MIMEText(body,"plain")
+
+    message["From"] = username
+    message["To"] = reciever_email
+    message["Subject"] = "Sending this via python"
+    return message
+
+def send_mail(SMTP_SERVER, PORT, USERNAME, PASSWORD, RECIEVER_EMAIL, message):
 
 
-body = "Holy cow can this actually go through?"
-message = MIMEText(body,"plain")
-
-message["From"] = data["sender_email"]
-message["To"] = data["reciever_email"]
-message["Subject"] = "Sending this via python"
+    with smtplib.SMTP(SMTP_SERVER,PORT) as server:
+        server.starttls()
+        server.login(USERNAME,PASSWORD)
+        server.sendmail(USERNAME,RECIEVER_EMAIL,message.as_string())
 
 
 
-
-with smtplib.SMTP(SMTP_SERVER,PORT) as server:
-    server.starttls()
-    server.login(USERNAME,PASSWORD)
-    server.sendmail(USERNAME,Reciever_email,message.as_string())
-
-def open_json(json):
-    with open(json,"r") as file:
+def open_json(json_file):
+    with open(json_file,"r") as file:
         data = json.load(file)
     SMTP_SERVER = data["server"]
     PASSWORD = data["password"]
     PORT = data["port"]
     USERNAME = data["sender_email"]
-    Reciever_email = data["reciever_email"]
-    return
+    RECIEVER_EMAIL = data["reciever_email"]
+    return SMTP_SERVER,PASSWORD,PORT,USERNAME,RECIEVER_EMAIL
+
+
 
 def main():
-    file = open_json("password.json")
-    
-
+    mail_server,password,port,username,reciever_mail= open_json("password.json")
+    message = create_message_object(username, reciever_mail)
+    send_mail(mail_server,port,username,password,reciever_mail,message)
 
 if __name__ == "__main__":
     main()
