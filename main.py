@@ -3,6 +3,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 import json
+import os
 
 
 
@@ -42,25 +43,30 @@ def create_message_object(username, reciever_email):
     message.attach(MIMEText(body,"plain"))
     return message
 
-
+def add_picture
 
 def send_mail(SMTP_SERVER, PORT, USERNAME, PASSWORD, RECIEVER_EMAIL, message):
 
-    image_path = "cat.jpg"
-    html_img = add_image()
-    message.attach(MIMEText(html_img, "html"))
-    with open(image_path, "rb") as img:
-            msg_img = MIMEImage(img.read(), name="cat.jpg")
-            msg_img.add_header("Content-ID", "<image1>")
-            msg_img.add_header("Content-Disposition", "inline")  # Ensures inline display
-            message.attach(msg_img)
+    want_picture = input("Would you like to add a an embedded image to this email?")
+    if (want_picture == "Yes"):
+        html_img = add_image()
+        message.attach(MIMEText(html_img, "html"))
+        with open(image_path, "rb") as img:
+                msg_img = MIMEImage(img.read(), name="cat.jpg")
+                msg_img.add_header("Content-ID", "<image1>")
+                msg_img.add_header("Content-Disposition", "inline")  # Ensures inline display
+                message.attach(msg_img)
    
     with smtplib.SMTP(SMTP_SERVER,PORT) as server:
         server.starttls()
         server.login(USERNAME,PASSWORD)
         server.sendmail(USERNAME,RECIEVER_EMAIL,message.as_string())
 
-
+#TODO: Add error handling.
+def open_image():
+    path = input("What is the name of the file you wish to send?")
+    full_path = os.path.join("images", path)
+    return full_path
 
 def open_json(json_file):
     with open(json_file,"r") as file:
