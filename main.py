@@ -7,17 +7,16 @@ import json
 
 
 def create_message_object(username, reciever_email):
-    body = "Holy cow this can actually go through pt 2?"
+    body = "Holy cow this can actually go through pt 3?"
     message = MIMEText(body,"plain")
-
     message["From"] = username
     message["To"] = reciever_email
     message["Subject"] = "Sending this via python"
     return message
 
+
+
 def send_mail(SMTP_SERVER, PORT, USERNAME, PASSWORD, RECIEVER_EMAIL, message):
-
-
     with smtplib.SMTP(SMTP_SERVER,PORT) as server:
         server.starttls()
         server.login(USERNAME,PASSWORD)
