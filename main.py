@@ -19,12 +19,12 @@ def add_image():
     return html
 
 def create_message():
-    message = input("What is the message you would like to say?")
+    message = input("What is the message you would like to say?: ")
     return message
 
 
 def create_message_body():
-    message_body = input("Print yes if you would like to make your own message, or no if ou would like to use the premade message")
+    message_body = input("Print yes if you would like to make your own message, or no if ou would like to use the premade message: ")
     message = ''
     if (message_body == "yes"):
         message = create_message()
@@ -38,25 +38,28 @@ def create_message_object(username, reciever_email):
     message = MIMEMultipart()
     message["From"] = username
     message["To"] = reciever_email
-    message["Subject"] = input("What would you like the Subject of the email to be?")
+    message["Subject"] = input("What would you like the Subject of the email to be?: ")
     body = create_message_body()
     message.attach(MIMEText(body,"plain"))
     return message
 
-def add_picture
-
-def send_mail(SMTP_SERVER, PORT, USERNAME, PASSWORD, RECIEVER_EMAIL, message):
-
-    want_picture = input("Would you like to add a an embedded image to this email?")
-    if (want_picture == "Yes"):
-        html_img = add_image()
-        message.attach(MIMEText(html_img, "html"))
-        with open(image_path, "rb") as img:
-                msg_img = MIMEImage(img.read(), name="cat.jpg")
+def add_inline_picture(message):
+    image_path = open_image()
+    with open(image_path, "rb") as img:
+                msg_img = MIMEImage(img.read(), name="")
                 msg_img.add_header("Content-ID", "<image1>")
                 msg_img.add_header("Content-Disposition", "inline")  # Ensures inline display
                 message.attach(msg_img)
-   
+    return message
+
+def send_mail(SMTP_SERVER, PORT, USERNAME, PASSWORD, RECIEVER_EMAIL, message):
+    want_picture = input("Would you like to add a an embedded image to this email?: ")
+    want_picture = want_picture.lower()
+    if (want_picture == "yes"):
+        html_img = add_image()
+        message.attach(MIMEText(html_img, "html"))
+        message = add_inline_picture(message)
+    
     with smtplib.SMTP(SMTP_SERVER,PORT) as server:
         server.starttls()
         server.login(USERNAME,PASSWORD)
@@ -64,7 +67,7 @@ def send_mail(SMTP_SERVER, PORT, USERNAME, PASSWORD, RECIEVER_EMAIL, message):
 
 #TODO: Add error handling.
 def open_image():
-    path = input("What is the name of the file you wish to send?")
+    path = input("What is the name of the file you wish to send?: ")
     full_path = os.path.join("images", path)
     return full_path
 
@@ -79,7 +82,7 @@ def open_json(json_file):
 
 
 def get_sender():
-    email_address = input("Please enter in the address of the person you wish to send this email to.")
+    email_address = input("Please enter in the address of the person you wish to send this email to: ")
     return email_address
 
 def main():
