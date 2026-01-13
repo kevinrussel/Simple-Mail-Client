@@ -10,3 +10,10 @@ There is also such a thing as ESMTP operations, I have no idea what that is, wil
 I found out that ESMTP is called Extended Simple mail transfer protocol, which is pretty much just the SMTP ( simple mail transfer protocol) but with extended functionality. 
 
 Okay so the email smtp works, I am able to send subjects as well as a body of text, so here is the next steps I want to do to finally complete this project. I want to be able to add inline pictures. Let's see if I can do that. 
+
+
+Okay this is where I am at, I want to do some final things before I consider this project done.
+
+1) Firstly I want to clean up the functions. 
+2) Secondly I want to get user input for the email I am going to send.
+3) Maybe even have a separate folder we could have pictures.
