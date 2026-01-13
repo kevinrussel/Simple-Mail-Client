@@ -21,11 +21,20 @@ def add_image():
 
 
 def create_message_object(username, reciever_email):
-    body = "Holy cow this can actually go through pt 7?"
+    body = "Hiii Sarah darling. " \
+    "\n \nCan you believe it, I have graduated from text messages to email? " \
+    "I feel like I am such an old man now, even though you bully me daily of being an " \
+    "old man I love you to the moon and back. " \
+    "I miss those cute eyes, and they way they look at me." \
+    "I miss how the world becomes calm when I hold your hand." \
+    "I just wanted to write you this email to let you know that I love you, " \
+    "and I believe in you so so so much. You are so much smarter than me, and" \
+    "so much cooler than me and I really can't believe that I get to call you mine." \
+    " I love you at the rate of the universe. Your's forever - Kevin. "
     message = MIMEMultipart()
     message["From"] = username
     message["To"] = reciever_email
-    message["Subject"] = "Sending this via python"
+    message["Subject"] = "To my Sarah darling, via python script."
     message.attach(MIMEText(body,"plain"))
     return message
 
@@ -34,11 +43,11 @@ def create_message_object(username, reciever_email):
 def send_mail(SMTP_SERVER, PORT, USERNAME, PASSWORD, RECIEVER_EMAIL, message):
 
     # Specify the path to your embedded image
-    image_path = "cat.webp"  # Change this to the correct path
+    image_path = "cat.jpg"  # Change this to the correct path
     html_img = add_image()
     message.attach(MIMEText(html_img, "html"))
     with open(image_path, "rb") as img:
-            msg_img = MIMEImage(img.read(), name="mily-way.jpg")
+            msg_img = MIMEImage(img.read(), name="cat.jpg")
             msg_img.add_header("Content-ID", "<image1>")
             msg_img.add_header("Content-Disposition", "inline")  # Ensures inline display
             message.attach(msg_img)
