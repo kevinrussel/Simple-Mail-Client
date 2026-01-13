@@ -6,22 +6,22 @@ import json
 
 
 
-def add_image(image_name):
+def add_image():
     html = """\
         <html>
         <body>
-            <p>Hi,<br>
-            This is a <b>test</b> email with an embedded image.<br>
+            <p> 
             Here is an image: <img src="cid:image1"></p>
         </body>
         </html>
         """
+    return html
 
 
 
 
 def create_message_object(username, reciever_email):
-    body = "Holy cow this can actually go through pt 4?"
+    body = "Holy cow this can actually go through pt 7?"
     message = MIMEMultipart()
     message["From"] = username
     message["To"] = reciever_email
@@ -35,10 +35,11 @@ def send_mail(SMTP_SERVER, PORT, USERNAME, PASSWORD, RECIEVER_EMAIL, message):
 
     # Specify the path to your embedded image
     image_path = "cat.webp"  # Change this to the correct path
-    
+    html_img = add_image()
+    message.attach(MIMEText(html_img, "html"))
     with open(image_path, "rb") as img:
-            msg_img = MIMEImage(img.read(), name="catp.wep")
-            msg_img.add_header("Content-ID", "<iamge1>")
+            msg_img = MIMEImage(img.read(), name="mily-way.jpg")
+            msg_img.add_header("Content-ID", "<image1>")
             msg_img.add_header("Content-Disposition", "inline")  # Ensures inline display
             message.attach(msg_img)
    
