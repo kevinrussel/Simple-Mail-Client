@@ -17,3 +17,4 @@ Okay this is where I am at, I want to do some final things before I consider thi
 1) Firstly I want to clean up the functions. 
 2) Secondly I want to get user input for the email I am going to send.
 3) Maybe even have a separate folder we could have pictures.
+4) It would be cool to also read from a txt file as well, and append that to the email. Let's see what we can do.

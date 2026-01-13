@@ -68,13 +68,16 @@ def open_json(json_file):
     PASSWORD = data["password"]
     PORT = data["port"]
     USERNAME = data["sender_email"]
-    RECIEVER_EMAIL = data["reciever_email"]
-    return SMTP_SERVER,PASSWORD,PORT,USERNAME,RECIEVER_EMAIL
+    return SMTP_SERVER,PASSWORD,PORT,USERNAME
 
 
+def get_sender():
+    email_address = input("Please enter in the address of the person you wish to send this email to.")
+    return email_address
 
 def main():
-    mail_server,password,port,username,reciever_mail= open_json("password.json")
+    mail_server,password,port,username= open_json("password.json")
+    reciever_mail = get_sender()
     message = create_message_object(username, reciever_mail)
     send_mail(mail_server,port,username,password,reciever_mail,message)
 
