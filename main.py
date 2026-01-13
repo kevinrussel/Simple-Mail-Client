@@ -21,11 +21,12 @@ def add_image(image_name):
 
 
 def create_message_object(username, reciever_email):
-    body = "Holy cow this can actually go through pt 3?"
+    body = "Holy cow this can actually go through pt 4?"
     message = MIMEMultipart()
     message["From"] = username
     message["To"] = reciever_email
     message["Subject"] = "Sending this via python"
+    message.attach(MIMEText(body,"plain"))
     return message
 
 
@@ -36,8 +37,8 @@ def send_mail(SMTP_SERVER, PORT, USERNAME, PASSWORD, RECIEVER_EMAIL, message):
     image_path = "cat.webp"  # Change this to the correct path
     
     with open(image_path, "rb") as img:
-            msg_img = MIMEImage(img.read(), name=)
-            msg_img.add_header("Content-ID", "<image1>")  # Matches HTML img src="cid:image1"
+            msg_img = MIMEImage(img.read(), name="catp.wep")
+            msg_img.add_header("Content-ID", "<iamge1>")
             msg_img.add_header("Content-Disposition", "inline")  # Ensures inline display
             message.attach(msg_img)
    
