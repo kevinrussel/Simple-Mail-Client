@@ -1,14 +1,28 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.image import MIMEImage
 import json
+
+
+
+def add_image(image_name):
+    html = """\
+        <html>
+        <body>
+            <p>Hi,<br>
+            This is a <b>test</b> email with an embedded image.<br>
+            Here is an image: <img src="cid:image1"></p>
+        </body>
+        </html>
+        """
 
 
 
 
 def create_message_object(username, reciever_email):
     body = "Holy cow this can actually go through pt 3?"
-    message = MIMEText(body,"plain")
+    message = MIMEMultipart()
     message["From"] = username
     message["To"] = reciever_email
     message["Subject"] = "Sending this via python"
@@ -17,6 +31,16 @@ def create_message_object(username, reciever_email):
 
 
 def send_mail(SMTP_SERVER, PORT, USERNAME, PASSWORD, RECIEVER_EMAIL, message):
+
+    # Specify the path to your embedded image
+    image_path = "cat.webp"  # Change this to the correct path
+    
+    with open(image_path, "rb") as img:
+            msg_img = MIMEImage(img.read(), name=)
+            msg_img.add_header("Content-ID", "<image1>")  # Matches HTML img src="cid:image1"
+            msg_img.add_header("Content-Disposition", "inline")  # Ensures inline display
+            message.attach(msg_img)
+   
     with smtplib.SMTP(SMTP_SERVER,PORT) as server:
         server.starttls()
         server.login(USERNAME,PASSWORD)
