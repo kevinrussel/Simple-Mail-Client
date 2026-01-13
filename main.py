@@ -23,14 +23,16 @@ def add_image():
 def create_message_object(username, reciever_email):
     body = "Hiii Sarah darling. " \
     "\n \nCan you believe it, I have graduated from text messages to email? " \
-    "I feel like I am such an old man now, even though you bully me daily of being an " \
+    "Even though you bully me daily of being an " \
     "old man I love you to the moon and back. " \
     "I miss those cute eyes, and they way they look at me." \
     "I miss how the world becomes calm when I hold your hand." \
+    " And I miss that pretty smile you have after I say something stupid." \
     "I just wanted to write you this email to let you know that I love you, " \
     "and I believe in you so so so much. You are so much smarter than me, and" \
     "so much cooler than me and I really can't believe that I get to call you mine." \
-    " I love you at the rate of the universe. Your's forever - Kevin. "
+    " I love you at the rate of the universe. Your's forever - Kevin. PS: There should" \
+    "be an attachment with this email. Let's see if it sent through :)"
     message = MIMEMultipart()
     message["From"] = username
     message["To"] = reciever_email
