@@ -34,8 +34,6 @@ def create_message_body():
     return message
 
 def create_message_object(username, reciever_email):
-
-  
     message = MIMEMultipart()
     message["From"] = username
     message["To"] = reciever_email
@@ -48,8 +46,7 @@ def create_message_object(username, reciever_email):
 
 def send_mail(SMTP_SERVER, PORT, USERNAME, PASSWORD, RECIEVER_EMAIL, message):
 
-    # Specify the path to your embedded image
-    image_path = "cat.jpg"  # Change this to the correct path
+    image_path = "cat.jpg"
     html_img = add_image()
     message.attach(MIMEText(html_img, "html"))
     with open(image_path, "rb") as img:
