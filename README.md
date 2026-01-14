@@ -51,3 +51,83 @@ Create a file named `password.json` in the same folder as the script:
 }
 
 Important: Many email providers (like Gmail) require an App Password instead of your normal password if you have 2FA enabled.
+
+2) (Optional) Create message.txt
+
+If you want the premade message option to work, add a message.txt file:
+
+Hello!
+
+This is a premade message sent from my Python mail client.
+
+3) (Optional) Add images
+
+Put images inside the images/ folder.
+When prompted, you’ll type the image file name (example: cat.png), and the script will look for:
+
+images/cat.png
+
+Run
+
+From the project folder:
+
+python main.py
+
+
+You’ll be prompted for:
+
+Recipient email
+
+Subject line
+
+Whether to write your own message (yes) or use message.txt (no)
+
+Whether to embed an inline image (yes/no)
+
+If yes, the image filename inside images/
+
+How the embedded image works
+
+If you choose to embed an image, the script:
+
+Adds an HTML part that references the image using:
+
+src="cid:image1"
+
+Attaches the image with:
+
+Content-ID: <image1>
+
+Content-Disposition: inline
+
+Some email clients display inline images differently. If you don’t see it inline, check the email’s “attachments” area.
+
+Notes / Known Limitations
+
+No error handling yet (there’s a #TODO in the code)
+
+Assumes the image exists inside images/
+
+Assumes password.json exists and contains all required keys
+
+Sends using STARTTLS (server.starttls()), which works for most SMTP providers on port 587
+
+Security Tips
+
+Do not commit password.json to GitHub.
+
+Add this to a .gitignore:
+
+password.json
+
+Future Improvements (ideas)
+
+Add validation + error handling for missing files and bad SMTP login
+
+Support attachments (not just inline images)
+
+Support multiple recipients
+
+Add a non-interactive mode using CLI arguments (argparse)
+
+Store secrets in environment variables instead of JSON
