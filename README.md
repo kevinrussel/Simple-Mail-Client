@@ -49,10 +49,11 @@ Create a file named `password.json` in the same folder as the script:
   "sender_email": "you@example.com",
   "password": "YOUR_PASSWORD_OR_APP_PASSWORD"
 }
+```
 
 Important: Many email providers (like Gmail) require an App Password instead of your normal password if you have 2FA enabled.
 
-2) (Optional) Create message.txt
+### 2) (Optional) Create message.txt
 
 If you want the premade message option to work, add a message.txt file:
 
@@ -60,7 +61,7 @@ Hello!
 
 This is a premade message sent from my Python mail client.
 
-3) (Optional) Add images
+### 3) (Optional) Add images
 
 Put images inside the images/ folder.
 When prompted, you’ll type the image file name (example: cat.png), and the script will look for:
@@ -102,7 +103,7 @@ Content-Disposition: inline
 
 Some email clients display inline images differently. If you don’t see it inline, check the email’s “attachments” area.
 
-Notes / Known Limitations
+### Notes / Known Limitations
 
 No error handling yet (there’s a #TODO in the code)
 
