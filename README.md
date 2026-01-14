@@ -50,3 +50,4 @@ Create a file named `password.json` in the same folder as the script:
   "password": "YOUR_PASSWORD_OR_APP_PASSWORD"
 }
 
+Important: Many email providers (like Gmail) require an App Password instead of your normal password if you have 2FA enabled.
