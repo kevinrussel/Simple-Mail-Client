@@ -1,5 +1,9 @@
 # Simple Mail Client (Python)
 
+
+<img src="images/mail.webp" width="400" alt="Demo Screenshot">
+
+
 A small command-line Python script that sends an email through an SMTP server.  
 It supports:
 
