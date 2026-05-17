@@ -1,4 +1,4 @@
-# Simple Mail Client (Python)
+# Python Mail Client
 
 
 <img src="images/mail.webp" width="400" alt="Demo Screenshot">
